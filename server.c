@@ -157,7 +157,7 @@ void server (int portno) {
     }
 
     /* Listen for incoming connections */
-    listen(sockfd, 5);
+    listen(sockfd, 100);
     clilen = sizeof(cli_addr);
 
         printf("Waiting for incoming connections...\n");

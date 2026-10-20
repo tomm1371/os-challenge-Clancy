@@ -1,10 +1,9 @@
 
-# Name of the final executable. Change this if your program should have a
-# different name.
+# Name of the final executable
 TARGET := server
 
-# Add every .c file used by the program to this list. For example, when you
-# split server.c into server.c, socket.c, and client.c, use:
+# Add every .c file used by the program to this list. 
+# i.e. if spliting server.c into server.c, socket.c, and client.c, use:
 #   SOURCES := server.c socket.c client.c
 SOURCES := server.c 
 HEADERS := lonesha256.h messages.h
