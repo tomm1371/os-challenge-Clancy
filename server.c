@@ -160,7 +160,7 @@ void server (int portno) {
     listen(sockfd, 100);
     clilen = sizeof(cli_addr);
 
-        printf("Waiting for incoming connections...\n");
+    printf("Waiting for incoming connections...\n");
     while (1) {
         /* Accept incoming connections */
         newsockfd = accept(sockfd, (struct sockaddr *) &cli_addr, &clilen);
