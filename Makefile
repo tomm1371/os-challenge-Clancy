@@ -2,18 +2,16 @@
 # Name of the final executable
 TARGET := server
 
-# Add every .c file used by the program to this list. 
-# i.e. if spliting server.c into server.c, socket.c, and client.c, use:
-#   SOURCES := server.c socket.c client.c
-SOURCES := server.c 
-HEADERS := lonesha256.h messages.h
+# aource files and header files. Add new source files here.
+SOURCES := src/server.c 
+HEADERS := src/lonesha256.h src/messages.h
 
 # Compiler and flags. Add include directories with, for example,
 #   CPPFLAGS += -Iinclude
 # Add libraries with, for example, LDFLAGS += -lpthread
 CC := gcc
 CPPFLAGS :=
-CFLAGS :=
+CFLAGS += -O3
 LDFLAGS :=
 LDLIBS :=
 
