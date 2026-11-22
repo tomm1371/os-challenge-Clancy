@@ -3,8 +3,8 @@
 TARGET := server
 
 # aource files and header files. Add new source files here.
-SOURCES := src/server.c 
-HEADERS := src/lonesha256.h src/messages.h
+SOURCES := src/server.c src/brute.c
+HEADERS := src/lonesha256.h src/messages.h src/brute.h
 
 # Compiler and flags. Add include directories with, for example,
 #   CPPFLAGS += -Iinclude

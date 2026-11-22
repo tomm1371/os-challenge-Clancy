@@ -9,51 +9,19 @@
 
 #include <string.h>
 #define LONESHA256_STATIC
-#include "lonesha256.h"
-//#define DEBUG
+//#include "lonesha256.h"
+#define DEBUG
 
+
+
+#include "brute.h"
 
 #ifdef DEBUG
 int reqeust_count = 0;
 #endif
 
 
-uint64_t brute_force(uint8_t *target_hash, uint64_t start, uint64_t end) {
 
-    uint32_t target_prefix =
-        ((uint32_t)target_hash[0] << 24) |
-        ((uint32_t)target_hash[1] << 16) |
-        ((uint32_t)target_hash[2] << 8)  |
-        (uint32_t)target_hash[3];
-    unsigned char out[32];
-    
-
-    for (uint64_t candidate = start; candidate < end; candidate++) {
-        uint64_t candidate_le = htole64(candidate);
-        lonesha256(out, (uint8_t *)&candidate_le, sizeof(candidate_le));
-        
-        uint32_t out_prefix =
-            ((uint32_t)out[0] << 24) |
-            ((uint32_t)out[1] << 16) |
-            ((uint32_t)out[2] << 8)  |
-            (uint32_t)out[3];
-        if (out_prefix == target_prefix && 
-            memcmp(out, (char *)target_hash, SHA256_DIGEST_LENGTH) == 0) {
-                #ifdef DEBUG
-                    printf("[%d] Success: %0lu (processed: %lu)\n", reqeust_count, candidate, (candidate - start + 1));
-                    printf("\n");
-                #endif
-                return htobe64(candidate_le);
-        }
-        if (candidate == end - 1) {
-            #ifdef DEBUG
-                printf("[%d] Failed to find a match in the range %lu to %lu\n", reqeust_count, start, end);
-            #endif
-            break;
-        }
-    }
-    return 0;
-}
 
 static void handle_request(int newsockfd) {
     /* Accept incoming connections */
@@ -98,13 +66,14 @@ static void handle_request(int newsockfd) {
 
         #ifdef DEBUG
             //printf("Received Hash: %s\n", (char *)buffer + PACKET_REQUEST_HASH_OFFSET);
-            printf("[%d]  start = %lu\n", ++reqeust_count, (start));
-            printf("[%d]    end = %lu\n", reqeust_count, (end));
+            printf("[%d] start = %lu\n", ++reqeust_count, (start));
+            printf("[%d]   end = %lu\n", reqeust_count, (end));
         #endif
 
 
         // brute force the answer
-        uint64_t candidate = brute_force(hash_network, start, (start + end));    
+        uint64_t candidate = brute_force(hash_network, start, (start + end)); 
+        printf("[%d] candidate = %lu\n", reqeust_count, candidate);   
 
 
         // Send the response back to the client
@@ -186,6 +155,8 @@ void server (int portno) {
     }
 }
 
+
+
 int main(int argc, char *argv[]){
     if (argc == 1) {
         printf("Using default port number: 5003\n");
@@ -203,11 +174,3 @@ int main(int argc, char *argv[]){
 
         
 }
-
-
-/*
-    TODO
-    
-
-    
-*/
