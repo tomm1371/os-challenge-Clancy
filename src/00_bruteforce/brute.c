@@ -31,8 +31,7 @@ uint64_t brute_force(const uint8_t *target_hash, uint64_t start, uint64_t end) {
         if (out_prefix == target_prefix && 
             memcmp(out, (char *)target_hash, SHA256_DIGEST_LENGTH) == 0) {
                 #ifdef DEBUG
-                    printf("   Success: %0lu (processed: %lu)\n", candidate, (candidate - start + 1));
-                    printf("\n");
+                    printf("   Success:  %0lu (processed: %lu)\n\n", candidate, (candidate - start + 1));
                 #endif
                 return htobe64(candidate_le);
         }

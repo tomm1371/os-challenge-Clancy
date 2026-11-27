@@ -1,12 +1,12 @@
 #!/bin/sh
 
-ARCH=`uname -m`
-OS=`uname -o`
+ARCH=$(uname -m)
+OS=$(uname -s)
 
-if [ "$ARCH" = "aarch64" ]; then
+if [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; then
 	ARCH="arm64"
 fi
-if [ "$OS" = "GNU/Linux" ]; then
+if [ "$OS" = "Linux" ] || [ "$OS" = "GNU/Linux" ]; then
 	OS="linux"
 fi
 if [ "$OS" = "Darwin" ]; then
@@ -14,4 +14,3 @@ if [ "$OS" = "Darwin" ]; then
 fi
 
 echo "$ARCH/bin/$OS"
-

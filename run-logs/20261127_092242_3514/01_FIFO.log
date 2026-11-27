@@ -1,0 +1,13 @@
+Building FIFO server...
+make: Entering directory '/home/vagrant/os-challenge-common'
+rm -f server src/01_FIFO/brute.o src/01_FIFO/server.o src/01_FIFO/threads.o src/01_FIFO/brute.d src/01_FIFO/server.d src/01_FIFO/threads.d
+gcc  -O3   -c src/01_FIFO/brute.c -o src/01_FIFO/brute.o
+gcc  -O3   -c src/01_FIFO/server.c -o src/01_FIFO/server.o
+gcc  -O3   -c src/01_FIFO/threads.c -o src/01_FIFO/threads.o
+gcc -lpthread src/01_FIFO/brute.o src/01_FIFO/server.o src/01_FIFO/threads.o  -o server
+make: Leaving directory '/home/vagrant/os-challenge-common'
+Seed 1, run 1/3: starting server
+  client output: /home/vagrant/os-challenge-common/src/01_FIFO/raw/seed1_rep1.log
+Seed 1, run 2/3: starting server
+  client output: /home/vagrant/os-challenge-common/src/01_FIFO/raw/seed1_rep2.log
+Seed 1, run 3/3: starting server

@@ -1,0 +1,8 @@
+Building brute-force baseline server...
+make: Entering directory '/home/clancy/Documents/GitHub/os-challenge-Clancy'
+rm -f server src/00_bruteforce/brute.o src/00_bruteforce/server.o src/00_bruteforce/brute.d src/00_bruteforce/server.d
+gcc  -O3   -c src/00_bruteforce/brute.c -o src/00_bruteforce/brute.o
+gcc  -O3   -c src/00_bruteforce/server.c -o src/00_bruteforce/server.o
+gcc -lpthread src/00_bruteforce/brute.o src/00_bruteforce/server.o  -o server
+make: Leaving directory '/home/clancy/Documents/GitHub/os-challenge-Clancy'
+Seed 1, run 1/3: starting server

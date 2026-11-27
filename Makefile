@@ -1,18 +1,26 @@
+# Makefile for the OS Challenge server
+
+
+# Change this variable to build a different experiment. 
+# For example, to build the 01_FIFO experiment,
+# run: EXP ?= 01_FIFO
+EXP ?= 01_FIFO
+
 
 # Name of the final executable
 TARGET := server
 
-# aource files and header files. Add new source files here.
-SOURCES := src/server.c src/brute.c
-HEADERS := src/lonesha256.h src/messages.h src/brute.h
+# Source files and header files. All .c and .h files in the src/$(EXP) directory will be compiled.
+SOURCES := $(wildcard src/$(EXP)/*.c)
+HEADERS := $(wildcard src/$(EXP)/*.h)
 
 # Compiler and flags. Add include directories with, for example,
 #   CPPFLAGS += -Iinclude
 # Add libraries with, for example, LDFLAGS += -lpthread
 CC := gcc
 CPPFLAGS :=
-CFLAGS += -O3
-LDFLAGS :=
+CFLAGS += -O3  
+LDFLAGS += -lpthread
 LDLIBS :=
 
 OBJECTS := $(SOURCES:.c=.o)
